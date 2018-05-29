@@ -80,13 +80,6 @@ public class NoteActivity extends AppCompatActivity {
                 MainActivity.notes.set(index,charSequence.toString());
                 //update changes in data
                 MainActivity.arrayAdapter.notifyDataSetChanged();
-                //then we must store a new text to shared preference
-                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences
-                        ("com.example.piendop.notes",MODE_PRIVATE);
-                //create a new hash set add all notes in array list notes
-                HashSet<String> set =  new HashSet<>(MainActivity.notes);
-                //put string to store permanently update new data need to be stored
-                sharedPreferences.edit().putStringSet("notes",set).apply();
             }
 
             @Override
@@ -94,6 +87,14 @@ public class NoteActivity extends AppCompatActivity {
 
             }
         });
+
+        //then we must store a new text to shared preference
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences
+                ("com.example.piendop.notes",MODE_PRIVATE);
+        //create a new hash set add all notes in array list notes
+        HashSet<String> set =  new HashSet<>(MainActivity.notes);
+        //put string to store permanently update new data need to be stored
+        sharedPreferences.edit().putStringSet("notes",set).apply();
 
     }
 
